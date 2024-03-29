@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./styles/style.css"/> 
+<link rel="shortcut icon" href="#">
+<script src="./GeezDate.js"></script>
+<script src="./Constants.js"></script>
+<html>
+<body>
+    <div id="wall">
+        <div class="group">
+            <img id="logo" src="./res/icon.png"/>
+            <h1>Silte Calendar</h1>
+        </div>
+        <img style="height: 165px;width:auto; margin-left: 3em;" src="./res/farmer.png"/>
+    </div>
+    <nav class="navi" id="menu">
+        <div id="header-logo" >
+            <img id="icon" src="flag.jpeg" style="height: 30px;"/>
+            <h1><script> 
+            var dateToday=GeezDate.now();
+            var constants=new Constants("geez");
+            document.write("<span class=\"latin\">"+(dateToday.dayOfMonth+17)+"</span>"+
+                        " "+constants.getMonth(dateToday.month+2)+", <span class=\"latin\">"+(dateToday.year-571)+"</span>"); </script></h1>
+            
+        </div>
+        <div>
+            <a href="javascript:void(0);" class="sandwich" onclick="myFunction()">
+                <i class="fa fa-bars "></i>
+              </a>
+            <a href="index.html">Calendar</a>
+            <a class="active" href="kkk.html">silte</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+<div class="container">
+    <img class="art" src="./res/month.png"/>
+    <div class="paragraph">
+        <hr class="dark-line">
+        <h3>የስልጤ ቀን አቆጣጠር</h3>
+        <hr class="dark-line">
+        <p>
+            
+        </p>
+        <p>የስልጤ ወራቶች </p>
+            
+    </div>
+
+    <div class="paragraph">
+        <hr class="dark-line">
+        <h3>የስልጤ ማህበረሰብ</h3>
+        <hr class="dark-line">
+        <p> </p>
+    </div>
+
+    <img class="art" src="./res/converter.png"/>
+    
+    <img class="art" src="./res/anual.png"/>
+    <div class="paragraph">
+        <hr class="dark-line">
+        <h3></h3>
+        <hr class="dark-line">
+        <p>ዓመታዊ በዓላት በስልጤ</p>
+            <ul>
+                <li></li>
+                <li></ul>
+            <p></p>
+            
+    </div>
+    <div class="paragraph">
+        <hr class="dark-line">
+        <h3>የስልጤ ቤህረሰብ</h3>
+        <hr class="dark-line">
+        <p> </p>
+    </div>
+    <img class="art" src="./res/hasab.png"/>
+    <img class="art" src="./res/options.png"/>
+    <div class="paragraph">
+        <hr class="dark-line">
+        <h3></h3>
+        <hr class="dark-line">
+        <p> 
+            <ul> 
+            </ul>
+        </p>
+    </div>
+
+</div>
+<footer>
+    <img src="./res//farmer.png"/>
+    <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; color: ivory; align-self: center;">Copyright&copy;kedre seman </p>
+</footer>
+</body>
+</html>

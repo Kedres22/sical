@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="./styles/style.css"/> 
+<link rel="stylesheet" href="./styles/calendar.css"/> 
+<link rel="shortcut icon" href="#">
+<script src="GeezDate.js"></script>
+<script src="calendar.js"></script>
+<script src="Constants.js"></script>
+<html>
+<body>
+    
+    <script>
+        var dateToday = GeezDate.now();
+        //var today=dateToday.format();
+        var m=dateToday.month;                    // current month
+        var y=dateToday.year;                    // current year
+        var calendarMonth=GeezDate.of(y,m,1);   // Day should be 1.to reduce unneccesary code to compensate for Pagumie date error. 
+        /** !!!! uncomment below line if you want text in English.
+        * optional if other locales may be set by adding localle resources in Calendar class.
+        */
+        // Calendar constants acording to silte Calendar.
+        // these Constants are Days of the week, Months of the year...etc.
+        // we get tose constants based on Language (locale) eg. here I used silte. can also be iso for English
+        var constants=new Constants("Geez")
+        var calendar=new Calendar(constants);
+    </script>
+    <nav class="navi" id="menu">
+        <div id="header-logo" >
+            <img id="icon" src="flag.jpeg" style="height: 30px;"/>
+            <h1>zare kenu <script> 
+            // this line writes current date on nav-bar.
+            document.write("<span class=\"latin\">"+(dateToday.dayOfMonth)+"</span>"+
+                        " "+constants.getMonth(dateToday.month)+", <span class=\"latin\">"+(dateToday.year)+"</span>"); </script></h1>
+            
+        </div>
+        <div>
+            <a href="javascript:void(0);" class="sandwich" onclick="myFunction()">
+                <i class="fa fa-bars "></i>
+              </a>
+            <a class="active" href="index.html">Calendar</a>
+            <a href="kkk.html">home</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </div>
+        </nav>
+    </nav>
+<div class="container">
+    <div class="calendar-container">
+        <script>
+        
+        </script> 
+        <!-- top banner with image relative to month -->
+        <div id="calendarNav" class="navButtons">
+
+            <!-- extra button to resset calendar card to current month -->
+            <div id="now" onclick="ressetCalendar()" ><i class="fa fa-calendar-day fa-2x"></i></div>
+            <div class="buttons-banner">
+                <p id="back"><span class="fa fa-chevron-left fa-2x"></span></p>
+                <h4 id="title"></h4>
+                <p id="next"><span class="fa fa-chevron-right fa-2x"></span></p>
+            </div>
+        </div>
+
+        <!-- Calendar table starts here -->
+        <div id="calendar">
+        </div>
+        <!-- calendar card ends here -->
+
+
+        <script>
+        // setting Calendar data starts here.
+
+            // declaring the calendar card that will hold the dates
+            var calendarCard=document.getElementById("calendar"); 
+
+            // setting html data dynamically from javascript 
+            calendarCard.innerHTML=calendar.showMonth(calendarMonth); 
+
+            // next button
+            var next=document.getElementById("next"); 
+            next.addEventListener("click", nextMonth);
+
+            // back button
+            var back=document.getElementById("back");
+            back.addEventListener("click", prevMonth);
+
+            // title of calendar card. where the text month, year are displayed.
+            var title=document.getElementById("title"); 
+            title.addEventListener("click",ressetCalendar);
+
+            // navigating forward when next button is clicked. 
+            function nextMonth(){
+                if(m<13){
+                    // normally , add one month when button clicked.
+                    m=m+1;
+                }else{
+                    // but if pagumie is reached (? last month of year reached)
+                    // start from september.
+                    m=1;
+                    //and increase year by one.
+                    y=y+1;
+                }
+                // renew Calendar month with new params.
+                // !!!! day should be set to 1 !!!!!
+                calendarMonth=GeezDate.of(y,m,1);
+                // finally  set text to card.
+                calendarCard.innerHTML=calendar.showMonth(calendarMonth);
+            }
+
+            function prevMonth(){ // nsvigsting to previous. except subtracting the numbers.
+                if(m>1){
+                    m=m-1;
+                }else{
+                    m=13;
+                    y=y-1;
+                }
+                calendarMonth=GeezDate.of(y,m,1);
+                calendarCard.innerHTML=calendar.showMonth(calendarMonth);
+            }
+
+            function ressetCalendar(){// resset to current calendar month.
+                var onThisMonth = (m==dateToday.month && y== dateToday.year);
+                //y= year, m=month, day is always set to begining of month i.e. 1.
+
+                if( !onThisMonth ){
+                    y=dateToday.year;
+                    m=dateToday.month;
+                    calendarMonth=GeezDate.of(y,m,1);
+                    calendarCard.innerHTML=calendar.showMonth(calendarMonth);
+                }
+            }
+        </script>
+    </div>
+</div>
+<script>
+    //Get the button
+    var icon = document.getElementById("icon");
+    var Logo = document.getElementById("logo");
+    var navBar = document.getElementById("menu");
+    
+    // When the user scrolls up and icon is hidden, show logo
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+        if (navBar.className==="pdanav") {
+            navBar.className="navi"
+            
+        } 
+      if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+        Logo.style.visibility = "hidden";
+        icon.style.visibility = "Visible";
+      } else {
+        Logo.style.visibility = "visible";
+        icon.style.visibility = "hidden";
+      }
+    }
+    function myFunction() {
+        var navBar = document.getElementById("menu");
+        if (navBar.className === "navi") {
+            navBar.className = "pdanav";
+        } else {
+            navBar.className = "navi";
+        }
+    }
+    function clickEvents(){
+        var day=document.getElementsByClassName("day");
+        day.addEventListener("click", showDate)
+    }
+    
+    </script>
+</body>
+</html>
